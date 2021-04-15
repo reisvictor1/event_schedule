@@ -1,21 +1,48 @@
 const userModel = require('../models/user')
-
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 module.exports.loginUser = async (req, res) => {
 
+    const { email, password } = req.body
+
+    const user = await userModel.findOne({ email: email })
     
+
+    if(!(await bcrypt.compare(password, user.password))){
+        return res.status(400).send(`As senhas não batem`)
+    }
+
+    const token = await jwt.sign({ user } , process.env.secret, { algorithm: 'RS256' })
+
+    return res.status(200).json(token)
 
 }
 
 module.exports.createNewUser = async (req, res) => {
 
-    const newUser = new userModel({ ...req.body })
+    const  { name, email, password } = req.body
+
+    const salt = await bcrypt.genSalt(10)
+
+    const hashedPass = await bcrypt.hash(password, salt)
+
+    const newUser = new userModel({
+        name: name,
+        email: email,
+        password: hashedPass
+    })
+
 
     const userCreated = await newUser.save()
+
 
     if(userCreated === undefined || !userCreated){
         return res.status(400).send(`O usuário não conseguiu ser cadastrado`)
     }
+
+    return res.status(200).json(userCreated)
 
 }
 
