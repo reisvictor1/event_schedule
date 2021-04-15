@@ -31,7 +31,7 @@ module.exports.getUsers = async (req, res) => {
 
 }
 
-module.exports.getOneUSer = async (req, res) => {
+module.exports.getOneUser = async (req, res) => {
 
 
 
