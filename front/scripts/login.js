@@ -21,9 +21,8 @@ const login = async () => {
     }).then((response) => {
         return response.text()
     }).then((data) => {
-        console.log(data)
         localStorage.setItem('token', data)
-        window.location.href = "./callendar.html"
+        window.location.href = "./schedule.html"
     })
 
 }

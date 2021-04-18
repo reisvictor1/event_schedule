@@ -1,0 +1,22 @@
+.events-wrapper{
+    padding: 2% 5%;
+    margin: 10% 15%;
+    background-color: #f7f7f9;
+    width: 100%;
+}
+
+.card{
+    width: 13rem;
+}
+
+.card-text{
+    margin: 1% 0%;
+}
+
+@media screen and (max-width: 992px) { 
+
+    .my-events-wrapper{
+        margin: 0% 1%
+    }
+
+ }

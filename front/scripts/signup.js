@@ -22,7 +22,6 @@ function signup(){
           },
         body:  JSON.stringify(data)
     }).then((response) => {
-        console.log(response)
         window.history.back()
     })
 
