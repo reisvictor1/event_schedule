@@ -1,4 +1,29 @@
 const eventModel = require('../models/event')
+const jwt = require('jsonwebtoken')
+
+module.exports.verifyToken =  async (req, res, next) => {
+
+    const token = req.headers['authorization']
+
+    let len = token.length
+
+    let parsed_token = token.slice(1, len-1)
+
+    if(!token) return res.status(400).send(`Não foi possível ler o token`)
+
+    req.token = parsed_token
+
+    jwt.verify(req.token,process.env.secret, (err, data) => {
+
+        if(err) return res.status(403).send(`Token inválido`)
+        console.log(data)
+        req.token = data
+
+        next()
+    })
+
+}
+
 
 module.exports.listEvents = async (req, res) => {
 
