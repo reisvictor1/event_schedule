@@ -14,7 +14,7 @@ module.exports.loginUser = async (req, res) => {
         return res.status(400).send(`As senhas não batem`)
     }
 
-    const token = await jwt.sign({ user } , process.env.secret, { algorithm: 'RS256' })
+    const token = await jwt.sign({ user } , process.env.secret)
 
     return res.status(200).json(token)
 

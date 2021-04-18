@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./styles/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        <form class="form-container rounded d-flex flex-column align-items-center">
-            <h4> Login </h4>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email"  placeholder="Email">
+   
+  </head>
+  <body>
+      <div class="container">
+          <div class="form-container rounded d-flex flex-column align-items-center">
+              <h4> Login </h4>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email"  placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="Senha">
+              </div>
+              <button onclick="login()" class="btn btn-primary">Entrar</button>
+              <p> Não tem conta? <a href="./signup.html">Entre aqui</a></p>
             </div>
-            <div class="form-group">
-              <label for="password">Senha</label>
-              <input type="password" class="form-control" id="password" placeholder="Senha">
-            </div>
-            <button type="submit" class="btn btn-primary">Entrar</button>
-            <p> Não tem conta? <a href="./singup.html">Entre aqui</a></p>
-          </form>
-    </div>
-</body>
+      </div>
+      <script src="./scripts/login.js"></script>
+  </body>
 </html>
