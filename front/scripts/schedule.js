@@ -14,8 +14,6 @@ function selectCard(id){
         }
     }
 
-    console.log(localStorage.getItem("selected"))
-
 }
 
 function addEvent(){
@@ -38,9 +36,8 @@ function deleteEvent(id){
           },
     }).then((response) => {
         return response.text()
-    }).then((data) => {
-       console.log(data)
     })
+
 
 
     fetch(`${URL}/event`, {
@@ -74,7 +71,7 @@ function deleteEvent(id){
                 <div class="card-body">
                     <h5 class="card-title">${event.title}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${event.description}</h6>
-                    <p class="card-text">Data: ${start_date[1]}/${start_date[2]} </a>
+                    <p class="card-text">Data: ${start_date[2]}/${start_date[1]} </a>
                     <p class="card-text">Início: ${start_clock} </a>
                     <p class="card-text">Final: ${end_clock} </a>
                 </div>
@@ -122,7 +119,7 @@ window.onload = () => {
                 <div class="card-body">
                     <h5 class="card-title">${event.title}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${event.description}</h6>
-                    <p class="card-text">Data: ${start_date[1]}/${start_date[2]} </a>
+                    <p class="card-text">Data: ${start_date[2]}/${start_date[1]} </a>
                     <p class="card-text">Início: ${start_clock} </a>
                     <p class="card-text">Final: ${end_clock} </a>
                 </div>

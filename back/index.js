@@ -5,7 +5,7 @@ require('dotenv').config()
 
 port = process.env.PORT
 
-mongoose.connect(process.env.db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true })
+mongoose.connect(process.env.db, {  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
 
 const routes = require('./routes/routes')
 
