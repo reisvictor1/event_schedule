@@ -12,69 +12,16 @@
     <div class="container">
         <div class="events-wrapper w-75 d-flex flex-column align-items-center">
             <h3>Meus Eventos</h3>
-            <div class="my-events-wrapper d-flex flex-wrap ml-xl-4 mb-5">
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-                <div class="card  m-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Descrição</h6>
-                        <p class="card-text">Data: </a>
-                        <p class="card-text">Início: </a>
-                        <p class="card-text">Final: </a>
-                    </div>
-                </div>
-               <!--Não há nenhum evento para ser mostrado. -->
+            <div id="my-events" class="my-events-wrapper d-flex flex-wrap ml-xl-4 mb-5">
+               
             </div>
             <div class="button-wrapper d-flex justify-content-center">
-                <button type="button" class="btn btn-primary m-2">Adicionar evento</button>
-                <button type="button" class="btn btn-primary m-2">Editar evento</button>
+                <button type="button" onclick="addEvent()" class="btn btn-primary m-2">Adicionar evento</button>
+                <button type="button" onclick="editEvent()" class="btn btn-primary m-2">Editar evento</button>
                 <button type="button" class="btn btn-primary m-2">Deletar evento</button>
             </div>
         </div>      
     </div>
+    <script src="scripts/schedule.js"></script>
 </body>
 </html>

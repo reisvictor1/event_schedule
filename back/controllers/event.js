@@ -16,7 +16,6 @@ module.exports.verifyToken =  async (req, res, next) => {
     jwt.verify(req.token,process.env.secret, (err, data) => {
 
         if(err) return res.status(403).send(`Token inválido`)
-        console.log(data)
         req.token = data
 
         next()
