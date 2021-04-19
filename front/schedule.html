@@ -18,7 +18,7 @@
             <div class="button-wrapper d-flex justify-content-center">
                 <button type="button" onclick="addEvent()" class="btn btn-primary m-2">Adicionar evento</button>
                 <button type="button" onclick="editEvent()" class="btn btn-primary m-2">Editar evento</button>
-                <button type="button" class="btn btn-primary m-2">Deletar evento</button>
+                <button type="button" onclick="deleteEvent(localStorage.getItem('selected'))" class="btn btn-primary m-2">Deletar evento</button>
             </div>
         </div>      
     </div>
