@@ -47,11 +47,19 @@ module.exports.listEvents = async (req, res) => {
 
 module.exports.addEvent = async (req, res) => {
 
+    const { title, description, start_hour, end_hour } = req.body
+
     const { user } = req.token
 
     const userSaved = await userModel.findById(user._id)
 
-    const newEvent = new eventModel({ ...req.body })
+    const newEvent = new eventModel({
+        title: title,
+        description: description,
+        start_hour: start_hour,
+        end_hour: end_hour,
+        user: userSaved
+    })
 
     const eventSaved = await newEvent.save()
 
