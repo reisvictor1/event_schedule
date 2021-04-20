@@ -53,13 +53,14 @@ module.exports.addEvent = async (req, res) => {
 
     const userSaved = await userModel.findById(user._id)
 
-    const newEvent = new eventModel({
+    let newEvent = new eventModel({
         title: title,
         description: description,
         start_hour: start_hour,
         end_hour: end_hour,
-        user: userSaved
     })
+
+    await newEvent.users.push(userSaved)
 
     const eventSaved = await newEvent.save()
 

@@ -49,12 +49,17 @@ function add(){
 
         data.map((event) => {
             
-            let event_end = new Date(event.end_hour)
-            let event_start = new Date(event.start_hour)
+            if(event){
 
-            
-            if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
-                flag = 1
+                let event_end = new Date(event.end_hour)
+                let event_start = new Date(event.start_hour)
+
+                
+                if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
+                    flag = 1
+                }
+
+
             }
             
         })

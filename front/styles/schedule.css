@@ -5,6 +5,12 @@
     width: 100%;
 }
 
+#exit-button{
+    width: 7%;
+    margin-left: 90%;
+    margin-top: 2%;
+}
+
 .card, .card-body{
     width: 13rem;
     border-color: greenyellow;
@@ -18,6 +24,22 @@
 
     .my-events-wrapper{
         margin: 0% 1%
+    }
+
+    #exit-button{
+        width: 10%;
+        margin-left: 90%;
+        margin-top: 2%;
+    }
+
+ }
+
+ @media screen and (max-width: 767px) { 
+
+    #exit-button{
+        width: 20%;
+        margin-left: 70%;
+        margin-top: 2%;
     }
 
  }

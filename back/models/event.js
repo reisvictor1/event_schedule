@@ -18,10 +18,10 @@ const eventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    "user": {
+    "users": [{
         type: mongoose.Schema.Types.ObjectId , 
         ref: 'User'
-    }
+    }]
 })
 
 
