@@ -17,7 +17,7 @@ function verifyDate(cur_start, cur_end, event_start, event_end){
 
 
 
-function edit(id){
+async function edit(id){
 
     let flag = 0
 
@@ -32,67 +32,57 @@ function edit(id){
     let current_start = new Date(start)
     let current_end = new Date(end)
 
-    fetch(`${URL}/user/token`,{
+    let response = await fetch(`${URL}/user/token`,{
         headers: {
             authorization: localStorage.getItem('token')
         }
-    }).then((response) => {
-        return response.json()
-    }).then((user) => {
-
-        return fetch(`${URL}/user/${user._id}/events`, {
-            headers: {
-                authorization: localStorage.getItem('token') 
-            }
-        })
-
-    }).then((response) => {
-        return response.json()
-    }).then((data) => {
-
-        data.map((event) => {
-            
-            let event_end = new Date(event.end_hour)
-            let event_start = new Date(event.start_hour)
-
-            
-            if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
-                flag = 1
-            }
-            
-        })
-        
+    })
     
-    }).then((res) => {
+    let user = await response.json()
 
-        if(flag){
-            alert(`Este evento está sobrescrevendo outro evento`)
-            return
+    response = await fetch(`${URL}/user/${user._id}/events`, {
+        headers: {
+            authorization: localStorage.getItem('token') 
         }
-
-        let data = {
-            title: document.getElementById("title").value,
-            description: document.getElementById("description").value,
-            start_hour: start,
-            end_hour: end
-        }
-    
-        fetch(`${URL}/event/${id}`,{
-            method: 'PUT',
-            headers: {
-                'authorization': localStorage.getItem('token'),
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            body:  JSON.stringify(data)
-        }).then((response) => {
-            return response.text()
-        }).then((data) => {
-            window.location.href = "./schedule.html"
-        })
-
     })
 
+    let data = await response.json()
+
+    data.map((event) => {
+            
+        let event_end = new Date(event.end_hour)
+        let event_start = new Date(event.start_hour)
+
+        
+        if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
+            flag = 1
+        }
+        
+    })
+
+    if(flag){
+        alert(`Este evento está sobrescrevendo outro evento`)
+        return
+    }
+
+    data = {
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        start_hour: start,
+        end_hour: end
+    }
+
+    response = fetch(`${URL}/event/${id}`,{
+        method: 'PUT',
+        headers: {
+            'authorization': localStorage.getItem('token'),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body:  JSON.stringify(data)
+    })
+
+    window.location.href = "./schedule.html"
   
 
 }

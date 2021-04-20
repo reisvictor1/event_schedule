@@ -11,18 +11,20 @@ const login = async () => {
         password: pass
     }
 
-    fetch(`${URL}/user/auth`,{
+    let response = await fetch(`${URL}/user/auth`,{
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
         body:  JSON.stringify(data)
-    }).then((response) => {
-        return response.text()
-    }).then((data) => {
-        localStorage.setItem('token', data)
-        window.location.href = "./schedule.html"
     })
+    
+    let json = await response.json() 
+
+    let token = `"${json}"`
+
+    localStorage.setItem('token', token)
+    window.location.href = "./schedule.html"
 
 }

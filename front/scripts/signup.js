@@ -1,7 +1,7 @@
 const URL = 'http://localhost:5000'
 
 
-function signup(){
+async function signup(){
    
     const name = document.getElementById('name').value
     const email = document.getElementById('email').value
@@ -14,16 +14,16 @@ function signup(){
         password: pass
     }
 
-    fetch(`${URL}/user`, {
+    let response = await fetch(`${URL}/user`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
         body:  JSON.stringify(data)
-    }).then((response) => {
-        window.history.back()
     })
+
+    window.history.back()
 
    
 }

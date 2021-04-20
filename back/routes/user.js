@@ -9,6 +9,7 @@ router.get('/token', eventController.verifyToken ,userController.returnUser)
 router.get('/:id/events', userController.getEventsByUser)
 router.get('/', userController.getUsers)
 router.post('/', userController.createNewUser)
+router.post('/event/:id', eventController.verifyToken ,userController.addAvailableEvent)
 router.put('/:id', userController.editUser)
 router.delete('/:id', userController.deleteUser)
 

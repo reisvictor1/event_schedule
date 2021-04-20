@@ -28,6 +28,27 @@ module.exports.returnUser = async (req, res) => {
     return res.status(200).json(user)
 }
 
+
+module.exports.addAvailableEvent = async (req, res) => {
+
+    const { id } = req.params
+
+    const { user } = req.token
+
+    const loggedUser = await userModel.findById(user._id)
+
+    const event = await eventModel.findById(id)
+
+    await event.users.push(loggedUser)
+    await event.save()
+
+    await loggedUser.events.push(event._id)
+    await loggedUser.save()
+
+
+    return res.status(200).json(loggedUser)
+}
+
 module.exports.getEventsByUser = async (req, res) => {
 
     const { id } = req.params

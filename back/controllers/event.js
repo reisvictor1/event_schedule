@@ -36,7 +36,7 @@ module.exports.listEvents = async (req, res) => {
     }
 
     if(!events.length){
-        return res.status(400).send(`Não há nenhum evento`)
+        return res.status(200).send(`Não há nenhum evento`)
     }
 
     return res.status(200).json(events)
