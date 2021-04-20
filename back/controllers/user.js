@@ -1,4 +1,5 @@
 const userModel = require('../models/user')
+const eventModel = require('../models/event')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -17,6 +18,34 @@ module.exports.loginUser = async (req, res) => {
     const token = await jwt.sign({ user } , process.env.secret)
 
     return res.status(200).json(token)
+
+}
+
+module.exports.returnUser = async (req, res) => {
+
+    const { user } = req.token
+
+    return res.status(200).json(user)
+}
+
+module.exports.getEventsByUser = async (req, res) => {
+
+    const { id } = req.params
+
+    const user = await userModel.findById(id)
+
+    if(user === undefined || !user){
+        return res.status(400).send(`Não foi possível encontrar o usuário`)
+    }
+
+    let events = []
+
+    for(let i = 0; i < user.events.length;i++){
+        let event = await eventModel.findById(user.events[i]._id)
+        events.push(event)
+    }
+
+    return res.status(200).json(events)
 
 }
 
@@ -58,11 +87,6 @@ module.exports.getUsers = async (req, res) => {
 
 }
 
-module.exports.getOneUser = async (req, res) => {
-
-
-
-}
 
 module.exports.editUser = async (req, res) => {
 

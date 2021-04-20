@@ -1,5 +1,8 @@
 const eventModel = require('../models/event')
+const userModel = require('../models/user')
 const jwt = require('jsonwebtoken')
+
+
 
 module.exports.verifyToken =  async (req, res, next) => {
 
@@ -39,9 +42,14 @@ module.exports.listEvents = async (req, res) => {
     return res.status(200).json(events)
 
 }
+    
 
 
 module.exports.addEvent = async (req, res) => {
+
+    const { user } = req.token
+
+    const userSaved = await userModel.findById(user._id)
 
     const newEvent = new eventModel({ ...req.body })
 
@@ -50,6 +58,10 @@ module.exports.addEvent = async (req, res) => {
     if(eventSaved === undefined || !eventSaved){
         return res.status(400).send(`Este evento não conseguiu ser inserido`)
     }
+
+    await userSaved.events.push(eventSaved)
+
+    await userSaved.save()
 
     return res.status(200).json(eventSaved)
 
