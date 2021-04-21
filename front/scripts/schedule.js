@@ -52,7 +52,7 @@ async function addAvailableEvent(){
 
     localStorage.setItem('user_id',user_id)
 
-    response = await fetch(`${URL}/user/${user_id}/events`, {
+    response = await fetch(`${URL}/event/`, {
         headers: {
             authorization: localStorage.getItem('token') 
         }
