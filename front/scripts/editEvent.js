@@ -50,12 +50,21 @@ async function edit(id){
 
     data.map((event) => {
             
-        let event_end = new Date(event.end_hour)
-        let event_start = new Date(event.start_hour)
+        if(event){
 
+            let event_end = new Date(event.end_hour)
+            let event_start = new Date(event.start_hour)
+
+            let cur_day = current_start.getFullYear() + "-" + current_start.getMonth() + "-" + current_start.getDay()
+            let event_day = event_start.getFullYear() + "-" + event_start.getMonth() + "-" + event_start.getDay()
+
+            if(event_day == cur_day){
+               
+                if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
+                    flag = 1
+                }
+            }
         
-        if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
-            flag = 1
         }
         
     })

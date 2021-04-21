@@ -18,6 +18,8 @@ const login = async () => {
             'Content-Type': 'application/json'
           },
         body:  JSON.stringify(data)
+    }).catch((err) => {
+        alert(err.response.data)
     })
     
     let json = await response.json() 

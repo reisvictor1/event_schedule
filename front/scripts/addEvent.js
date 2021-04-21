@@ -2,6 +2,7 @@ const URL = 'http://localhost:5000'
 
 function verifyDate(cur_start, cur_end, event_start, event_end){
 
+
     if(cur_start - event_start > 0 && cur_start < event_end)
         return true
     if(event_end - cur_end > 0 && cur_end > event_start)
@@ -37,6 +38,7 @@ async function add(){
     
     let user = await response.json()
 
+    
 
     response = await fetch(`${URL}/user/${user._id}/events`, {
         headers: {
@@ -46,18 +48,26 @@ async function add(){
 
     let data = await response.json()
 
+
+
     data.map((event) => {
             
         if(event){
 
+        
             let event_end = new Date(event.end_hour)
             let event_start = new Date(event.start_hour)
 
-            
-            if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
-                flag = 1
-            }
+            let cur_day = current_start.getFullYear() + "-" + current_start.getMonth() + "-" + current_start.getDay()
+            let event_day = event_start.getFullYear() + "-" + event_start.getMonth() + "-" + event_start.getDay()
 
+            if(event_day == cur_day){
+               
+                if(verifyDate(current_start.getTime(), current_end.getTime(), event_start.getTime(), event_end.getTime())){
+                    flag = 1
+                }
+            }
+        
 
         }
         

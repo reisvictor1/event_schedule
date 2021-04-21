@@ -162,6 +162,9 @@ async function deleteEvent(id){
         headers: {
             authorization: localStorage.getItem('token'), 
           },
+    }).catch((err) => {
+        alert(err.response.data)
+        return
     })
     
     let data = await response.json()
