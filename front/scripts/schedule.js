@@ -163,6 +163,7 @@ async function deleteEvent(id){
             authorization: localStorage.getItem('token'), 
           },
     }).catch((err) => {
+        console.log(err.response)
         alert(err.response.data)
         return
     })

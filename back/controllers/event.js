@@ -98,13 +98,20 @@ module.exports.deleteEvent = async (req, res) => {
 
     const { user } = req.token
 
+    const user_id = user._id
+
     const event = await eventModel.findById(id);
 
     if(event === undefined || !event){
         return res.status(400).send(`Este evento não conseguiu ser deletado`)
     }
 
+    if(event.users[0] != user_id){
+        return res.status(400).send(`Você nao pode deletar este evento`)
+    }
 
-    //return res.status(200).json(eventDeleted)
+    const eventDeleted = await event.delete()
+
+    return res.status(200).json(eventDeleted)
 
 }
